@@ -2,12 +2,12 @@ package org.example.service;
 
 import org.example.model.Customer;
 import org.example.repository.CustomerRepository;
-import org.example.repository.CustomerRepositoryDB;
-import org.example.repository.CustomerRepositoryStub;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service("customerService")
 public class DefaultCustomerService  implements CustomerService {
 
   private CustomerRepository repository;
