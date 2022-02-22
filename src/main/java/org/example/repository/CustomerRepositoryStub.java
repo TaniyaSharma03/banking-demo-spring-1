@@ -1,11 +1,13 @@
 package org.example.repository;
 
 import org.example.model.Customer;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
 
+@Repository("stub")
 public class CustomerRepositoryStub implements CustomerRepository {
 
   public List<Customer> findAll() {
