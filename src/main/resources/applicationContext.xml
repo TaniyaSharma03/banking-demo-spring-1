@@ -4,7 +4,7 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB" primary="true" />
+    <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB"/>
 
     <bean name="customerService" class="org.example.service.DefaultCustomerService">
         <constructor-arg index="0" ref="customerRepository" />
