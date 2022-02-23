@@ -4,10 +4,8 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB"/>
+    <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB" />
 
-    <bean name="customerService" class="org.example.service.DefaultCustomerService">
-        <property name="customerRepository" ref="customerRepository" />
-    </bean>
+    <bean name="customerService" class="org.example.service.DefaultCustomerService" autowire="byType" />
 
 </beans>
