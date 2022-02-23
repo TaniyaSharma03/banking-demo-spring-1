@@ -7,7 +7,7 @@
     <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB"/>
 
     <bean name="customerService" class="org.example.service.DefaultCustomerService">
-        <constructor-arg index="0" ref="customerRepository" />
+        <property name="customerRepository" ref="customerRepository" />
     </bean>
 
 </beans>
