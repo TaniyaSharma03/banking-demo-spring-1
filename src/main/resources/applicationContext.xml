@@ -6,6 +6,6 @@
 
     <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB" />
 
-    <bean name="customerService" class="org.example.service.DefaultCustomerService" autowire="byType" />
+    <bean name="customerService" class="org.example.service.DefaultCustomerService" autowire="byName" />
 
 </beans>
