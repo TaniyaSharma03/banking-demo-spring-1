@@ -31,4 +31,9 @@ public class DefaultCustomerService implements CustomerService {
     return optionalCustomer.orElseGet(Customer::new);
   }
 
+  @Override
+  public void deleteCustomer(Long id) {
+    repository.deleteById(id);
+  }
+
 }
