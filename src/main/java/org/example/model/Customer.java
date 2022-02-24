@@ -1,6 +1,7 @@
 package org.example.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity(name = "customers")
 public class Customer {
@@ -9,9 +10,13 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "customer_id")
   private Long id;
-
   private String name;
   private String city;
+
+  @Column(name = "date_of_birth")
+  private Date dateOfBirth;
+  private String zipcode;
+  private Integer status;
 
   public Customer() {}
 
@@ -46,5 +51,29 @@ public class Customer {
       ", name='" + name + '\'' +
       ", city='" + city + '\'' +
       '}';
+  }
+
+  public Date getDateOfBirth() {
+    return dateOfBirth;
+  }
+
+  public void setDateOfBirth(Date dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+  }
+
+  public String getZipcode() {
+    return zipcode;
+  }
+
+  public void setZipcode(String zipcode) {
+    this.zipcode = zipcode;
+  }
+
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
   }
 }
