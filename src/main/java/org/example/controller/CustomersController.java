@@ -4,10 +4,7 @@ import org.example.model.Customer;
 import org.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,18 @@ public class CustomersController {
   public void deleteCustomer(@PathVariable Long id) {
     customerService.deleteCustomer(id);
   }
+
+  @PostMapping
+  public Customer saveCustomer(@RequestBody Customer customer) {
+    return customerService.saveCustomer(customer);
+  }
+
+  @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+  public Customer updateCustomer(@PathVariable Long id,
+                                 @RequestBody Customer customer) {
+    return customerService.updateCustomer(id, customer);
+  }
+
+
 
 }

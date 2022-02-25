@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.model.Customer;
 import org.example.repository.CustomerRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,11 +41,28 @@ public class DefaultCustomerService implements CustomerService {
   @Override
   public void deleteCustomer(Long id) {
     // before deleting, verify that the Customer exists in the DB
-    ResponseEntity<Customer> customer = getCustomer(id);
-    if(customer.getStatusCode().is4xxClientError()) {
+    ResponseEntity<Customer> responseEntity = getCustomer(id);
+
+    if(responseEntity.getStatusCode().is4xxClientError()) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer not found");
     }
     repository.deleteById(id);
+  }
+
+  @Override
+  public Customer saveCustomer(Customer customer) {
+    return repository.saveAndFlush(customer);
+  }
+
+  @Override
+  public Customer updateCustomer(Long id, Customer customer) {
+    ResponseEntity<Customer> responseEntity = getCustomer(id);
+    if(responseEntity.getStatusCode().is4xxClientError()) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "invalid customer id");
+    }
+    Customer existingCustomer = responseEntity.getBody();
+    BeanUtils.copyProperties(customer, existingCustomer, "id");
+    return repository.saveAndFlush(existingCustomer);
   }
 
 }
