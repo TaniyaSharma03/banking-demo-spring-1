@@ -3,7 +3,11 @@ package org.example.controller;
 import org.example.model.Customer;
 import org.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,7 +24,7 @@ public class CustomersController {
   }
 
   @RequestMapping("{id}")
-  public Customer getCustomer(@PathVariable Long id) {
+  public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
     return customerService.getCustomer(id);
   }
 
